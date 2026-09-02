@@ -9,6 +9,7 @@
 
 struct agent_config {
 	bool json;
+	bool skip_loopback;
 	int stats_interval_sec; /* 0 = disabled */
 };
 
@@ -20,6 +21,7 @@ struct proc_stats {
 	uint64_t tcp_close;
 	uint64_t udp_send;
 	uint64_t udp_recv;
+	uint64_t packets;
 	uint64_t bytes;
 };
 

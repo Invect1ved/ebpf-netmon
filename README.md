@@ -2,13 +2,14 @@
 
 Курсовой проект: **eBPF-агент пассивного мониторинга TCP/UDP-соединений** и классификации (атрибуции) сетевого трафика по процессам в Linux.
 
-## Возможности (MVP)
+## Возможности (MVP+)
 
-- Пассивный перехват событий TCP: `connect`, `accept`, `close`
-- События UDP: `sendmsg` / `recvmsg` (метаданные потока)
-- Привязка к процессу: `pid`, `tgid`, `comm`
+- Пассивный перехват TCP: `connect` (IPv4/IPv6), `accept`, `close`
+- UDP `sendmsg` / `recvmsg` с оценкой байт и агрегацией потоков
+- Привязка к процессу: `pid`, `tgid`, `comm` + кэш `sock → owner`
+- Фильтр loopback (`--no-loopback`)
 - Агрегация статистики по процессу в userspace
-- Вывод в CLI (текстовая таблица / JSON lines)
+- Вывод в CLI (текст / JSON lines)
 
 Сборка и запуск — **только на Linux** (ядро ≥ 5.15, желательно с BTF).
 
@@ -52,9 +53,10 @@ make
 ## Запуск
 
 ```bash
-sudo ./bin/netmon              # текстовый вывод событий
-sudo ./bin/netmon --json       # JSON lines
-sudo ./bin/netmon --stats 5    # сводка по процессам каждые 5 с
+sudo ./bin/netmon                 # текстовый вывод событий
+sudo ./bin/netmon --json          # JSON lines
+sudo ./bin/netmon --stats 5       # сводка по процессам каждые 5 с
+sudo ./bin/netmon --no-loopback   # без 127.0.0.0/8 и ::1
 ```
 
 Остановка: `Ctrl+C`.
