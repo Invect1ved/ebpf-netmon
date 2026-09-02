@@ -1,0 +1,29 @@
+# Build
+/build/
+*.o
+*.bpf.o
+*.skel.h
+/src/netmon
+/bin/
+
+# Generated BTF/headers
+/bpf/vmlinux.h
+/.output/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Python / misc
+__pycache__/
+*.pyc
+.venv/
+
+# Logs / exports
+*.log
+/out/
+/data/
