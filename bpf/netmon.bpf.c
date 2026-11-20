@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
+// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
 /* eBPF: пассивный мониторинг TCP/UDP + атрибуция к процессу.
  *
  * Hooks:
@@ -21,7 +21,12 @@
 #include <bpf/bpf_core_read.h>
 #include <bpf/bpf_endian.h>
 
-#define __BPF__
+/* vmlinux.h не тащит uapi AF_* */
+#ifndef AF_INET
+#define AF_INET  2
+#define AF_INET6 10
+#endif
+
 #include "netmon.h"
 
 char LICENSE[] SEC("license") = "Dual BSD/GPL";

@@ -5,11 +5,7 @@
 #ifdef __BPF__
 /* Types come from vmlinux.h (included before this header in .bpf.c). */
 #else
-#include <stdint.h>
-typedef uint8_t  __u8;
-typedef uint16_t __u16;
-typedef uint32_t __u32;
-typedef uint64_t __u64;
+#include <linux/types.h>
 #endif
 
 #define NETMON_COMM_LEN 16

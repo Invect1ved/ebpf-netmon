@@ -51,7 +51,7 @@ $(BPF_OBJ): $(BPF_SRC) $(INC_DIR)/netmon.h $(BPF_DIR)/vmlinux.h | dirs
 	$(CLANG) $(BPF_CFLAGS) -c $< -o $@
 
 $(BPF_SKEL): $(BPF_OBJ)
-	$(BPFTOOL) gen skeleton $< name netmon > $@
+	$(BPFTOOL) gen skeleton $< name netmon_bpf > $@
 
 $(BUILD_DIR)/main.o: $(SRC_DIR)/main.c $(SRC_DIR)/agent.h $(INC_DIR)/netmon.h $(BPF_SKEL) | dirs
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/main.c -o $@
